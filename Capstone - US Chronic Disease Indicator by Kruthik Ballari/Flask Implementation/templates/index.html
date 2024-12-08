@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <header>
+        <h1>Data Analytics Dashboard For US Chronic Disease Indicator</h1>
+    </header>
+    
+    <h2 style="color: rgb(0, 0, 0); ">Brief About the Dataset</h2>
+    <br>
+    <p>The US Chronic Disease Indicator (CDI) Dataset is a comprehensive dataset 
+        that contains information on the prevalence and incidence of chronic diseases and 
+        associated risk factors in the United States. It is often used for public health 
+        research and analysis. The dataset includes various indicators such as the rates of diabetes, 
+        heart disease, obesity, and other chronic conditions, as well as demographic data like age, sex, 
+        race, and socioeconomic status.
+        The CDI dataset is typically compiled from multiple sources, including the Behavioral Risk Factor 
+        Surveillance System (BRFSS) and other health surveys. Researchers and public health officials use it to analyze trends, 
+        identify health disparities, and develop strategies for prevention and intervention. 
+        It helps in understanding how chronic diseases impact different communities and informs policy-making to improve public health outcomes
+    </p>
+    <form method="POST">
+        <label for="chart_type">Select a Chart to View:</label>
+        <select name="chart_type" id="chart_type">
+            <option >Select a graph</option>
+            <option value="Alcohol Use Among Youth by Race/Ethnicity in 2019 under Crude Prevalence">Alcohol Use Among Youth by Race/Ethnicity in 2019 under Crude Prevalence</option>
+            <option value="Chronic liver disease mortality in California in 2013">Chronic liver disease mortality in California in 2013</option>
+            <option value="year_distribution">Data Value Distribution by Year</option>
+            <option value="topics_distribution">Topics Distribution</option>
+            <option value="reference_count">Reference Count</option>
+        </select>
+        <button type="submit">Generate Chart</button>
+    </form>
+
+    {% if plot_url %}
+    <h2>Selected Chart</h2>
+    <img src="data:image/png;base64,{{ plot_url }}" alt="Chart">
+    {% endif %}
+</body>
+</html>
